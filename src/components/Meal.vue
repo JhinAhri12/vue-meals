@@ -1,14 +1,20 @@
 <template>
     <div class="container">
-         <button class="btn btn-flat" @click="randomMeal" >Afficher un plat aléatoire</button>
+        <div>
+            <span v-if="another"><button class="btn btn-flat" @click="randomMeal" >Afficher un autre plat aléatoire</button></span>
+            <span v-else><button class="btn btn-flat" @click="randomMeal" >Afficher un plat aléatoire</button></span>
+        </div>
+         
 
         <div class="meal-infos" v-if="meal">
             <h1>{{meal.strMeal}}</h1>
+            <h2>Ingredients :</h2>
             <img :src="meal.strMealThumb" alt="meal-thumb">
             <ul>
                 <li v-for="(ingredient) in ingredients" :key="ingredient.id" >{{ingredient}}</li>
             </ul>
-            <p>{{meal.strInstructions}}</p>
+            <h2>Instuctions :</h2>
+            <p><i>{{meal.strInstructions}}</i></p>
         </div>
     </div>
     
@@ -23,6 +29,7 @@ export default {
         return {
             meal: null,
             ingredients: null,
+            another: null
         };
   },
   methods: {
@@ -49,6 +56,7 @@ export default {
                     break;
                 }
             }
+            this.another = 'yes';
         }
     },
 }
@@ -56,11 +64,16 @@ export default {
 
 <style scoped>
 .btn-flat {
+margin-top:10px;
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
   background: #670BFF;
   transition: background 0.3s ease;
+}
+
+h1, h2{
+    color : #670bff;
 }
 
 .btn-flat:hover {
@@ -76,11 +89,15 @@ export default {
 .container {
   font-family: arial;
   font-size: 16px;
-  margin: 2px;
+  margin: 25px;
+  
 }
 
 div {
   text-align: center;
 }
 
+p{
+    padding-bottom:10px
+}
 </style>
