@@ -9,6 +9,9 @@ import Meal from "@/components/Meal.vue"
   </main>
 </template>
 
-<style scoped>
-
+<style >
+*{
+background-color: antiquewhite;
+color: black;
+}
 </style>
